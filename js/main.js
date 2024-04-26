@@ -1,24 +1,35 @@
-import { cargarProductos } from "../cargar_productos/cargar_productos.js";
-import { cargar_categorias } from "../cargar_categoria/Cargar_categorias.js";
-let DOM = document.querySelector("#root");
-DOM.innerHTML=`
-    <header></header>
+import { cargarProductos } from "./cargar_productos.js";
+import { cargar_categorias } from "./Cargar_categorias.js";
+
+// Selecciona el elemento con el ID 'root'
+const DOM = document.querySelector("#root");
+
+// Estructura HTML básica
+DOM.innerHTML = `
+    <header id="header"></header>
     <main class="body">
         <section id="div_product_list"></section>
         <section id="div_summery_description"></section>
     </main>
-    <footer></footer>
-`
+    <footer id="footer"></footer>
+`;
 
-let lista_productos;
+// Función para cargar categorías y productos
+async function cargarCategoriasYProductos() {
+    try {
+        // Obtener productos de la API
+        const response = await fetch('https://fakestoreapi.com/products');
+        const data = await response.json();
 
-fetch('https://fakestoreapi.com/products')
-    .then(res => res.json())
-    .then(data => {
-        lista_productos = data;
+        // Llamar a la función para cargar productos
+        cargarProductos(data);
 
-        // mi programacion
-        cargarProductos(lista_productos);
-    });
+        // Llamar a la función para cargar categorías
+        cargar_categorias();
+    } catch (error) {
+        console.error("Error al cargar categorías y productos:", error);
+    }
+}
 
-cargar_categorias();
+// Llamar a la función para cargar categorías y productos
+cargarCategoriasYProductos();
