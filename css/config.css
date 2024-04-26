@@ -10,5 +10,5 @@ html{
 
 #root{
     display: grid;
-    grid-template-rows: 4rem 55.1rem 3.5rem;
+    grid-template-rows: 5.5rem 1fr 5.5rem;
 }
