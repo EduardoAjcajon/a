@@ -1,6 +1,6 @@
-import { cargarProductos } from "./cargar_productos.js";
-import { cargar_categorias } from "./Cargar_categorias.js";
-
+import { cargar_categorias } from "../cargar_categorias/Cargar_categorias.js";
+import { cargarProductos } from "../Cargar_productos/cargar_productos.js"
+ 
 // Selecciona el elemento con el ID 'root'
 const DOM = document.querySelector("#root");
 
